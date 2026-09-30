@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: portal-gcm-niteroi
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: GCM_DEMO_MODE
+        value: "false"
+      - key: GCM_BOOTSTRAP_ADMIN_MATRICULA
+        value: "9001"
+      - key: GCM_BOOTSTRAP_ADMIN_NOME
+        value: "Administrador Inicial"
+      - key: GCM_BOOTSTRAP_ADMIN_PASSWORD
+        sync: false
